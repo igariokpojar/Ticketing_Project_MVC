@@ -5,7 +5,7 @@ import java.util.*;
 
 public abstract class AbstractMapService <T,ID>{
 
-    public Map<ID,T> map = new HashMap<>(); //DB (ID-key) and (T-value)
+    public Map<ID,T> map = new HashMap<>(); // fake DB (ID-key) and (T-value)
 
      T save(ID id, T object){
          map.put(id,object);
@@ -13,7 +13,7 @@ public abstract class AbstractMapService <T,ID>{
      }
 
      List<T> findAll(){
-         return new ArrayList<>(map.values());
+         return new ArrayList<>(map.values()); // it will return List
      }
 
      T findById(ID id){
