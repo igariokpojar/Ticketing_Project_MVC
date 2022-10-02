@@ -2,8 +2,8 @@ package com.cydeo.service.impl;
 
 
 import java.util.*;
-
-public abstract class AbstractMapService <T,ID>{
+// we created abstract class to avoid implementing same methods again and again
+public abstract class AbstractMapService <T,ID>{ // we don't need the Objects from Abstract class
 
     public Map<ID,T> map = new HashMap<>(); // fake DB (ID-key) and (T-value)
 
@@ -21,5 +21,9 @@ public abstract class AbstractMapService <T,ID>{
      }
      void deleteById(ID id){
          map.remove(id);
+     }
+
+     void  update (ID id, T object){
+         map.put(id,object);
      }
 }

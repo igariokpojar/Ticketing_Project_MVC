@@ -1,26 +1,33 @@
 package com.cydeo.boostrap;
 
 import com.cydeo.config.enums.Gender;
+import com.cydeo.config.enums.Status;
+import com.cydeo.dto.ProjectDTO;
 import com.cydeo.dto.RoleDTO;
 import com.cydeo.dto.UserDTO;
+import com.cydeo.service.ProjectService;
 import com.cydeo.service.UserService;
 import com.cydeo.service.impl.RoleServiceImpl;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+
+import java.time.LocalDate;
 
 @Component
 public class DataGenerator implements CommandLineRunner {
 
      private  final RoleServiceImpl roleService;
      private final UserService userService;
+     private final ProjectService projectService;
 
-    public DataGenerator(RoleServiceImpl roleService, UserService userService) {
+    public DataGenerator(RoleServiceImpl roleService, UserService userService, ProjectService projectService) {
         this.roleService = roleService;
         this.userService = userService;
+        this.projectService = projectService;
     }
 
     @Override
-    public void run(String... args) throws Exception {
+    public void run(String... args) throws Exception { //whatever data we add, it will implement first
 
         // This run method will execute FIRST BEFORE ANYTHING WHEN you start the application
         // create some users and put the DB
@@ -64,6 +71,15 @@ public class DataGenerator implements CommandLineRunner {
         userService.save(user6);
         userService.save(user7);
         userService.save(user8);
+
+
+        ProjectDTO project1 = new ProjectDTO("Spring MVC", "PR001", user1, LocalDate.now(), LocalDate.now().plusDays(25), "Creating Controllers", Status.OPEN);
+        ProjectDTO project2 = new ProjectDTO("Spring ORM", "PR002", user2, LocalDate.now(), LocalDate.now().plusDays(10), "Creating Database", Status.IN_PROGRESS);
+        ProjectDTO project3 = new ProjectDTO("Spring Container", "PR003", user1, LocalDate.now(), LocalDate.now().plusDays(32), "Creating Container", Status.IN_PROGRESS);
+
+        projectService.save(project1);
+        projectService.save(project2);
+        projectService.save(project3);
     }
 
 }
