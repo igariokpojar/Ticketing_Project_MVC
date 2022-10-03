@@ -1,20 +1,20 @@
 package com.cydeo.dto;
 
-import com.cydeo.config.enums.Gender;
+import com.cydeo.enums.Gender;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 public class UserDTO {
 
     private String firstName;
     private String lastName;
     private String userName;
     private String passWord;
-    private boolean enable;
+    private boolean enabled;
     private String phone;
     private RoleDTO role;
     private Gender gender;

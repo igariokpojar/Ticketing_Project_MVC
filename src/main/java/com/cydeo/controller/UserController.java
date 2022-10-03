@@ -39,11 +39,12 @@ public class UserController {
     @PostMapping("/create") // this method is going to post or to Inject the User in DB
     public String insertUser(@ModelAttribute("user") UserDTO user){ // capture the User
 
-        userService.save(user);
+        userService.save(user); // in DB save and update is not going to be the same
 
         return "redirect:/user/create"; //end point when you redirect
 
     }
+
     @GetMapping("/update/{username}") // to bring something from html to our code we need PathVariable or Query
     public String editUser(@PathVariable("username") String username, Model model){
 
@@ -58,8 +59,8 @@ public class UserController {
         return "/user/update";
     }
 
-   @PostMapping("/update")
-    public String updateUser(@ModelAttribute("user") UserDTO user){
+   @PostMapping("/update") // do we have service user updating Object?..nope we don't have so let's create one.. on the CrudService
+    public String updateUser(@ModelAttribute("user") UserDTO user){ // @ModelAttribute is optional
 
       userService.update(user);
 

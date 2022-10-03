@@ -1,10 +1,10 @@
 package com.cydeo.boostrap;
 
-import com.cydeo.config.enums.Gender;
-import com.cydeo.config.enums.Status;
 import com.cydeo.dto.ProjectDTO;
 import com.cydeo.dto.RoleDTO;
 import com.cydeo.dto.UserDTO;
+import com.cydeo.enums.Gender;
+import com.cydeo.enums.Status;
 import com.cydeo.service.ProjectService;
 import com.cydeo.service.UserService;
 import com.cydeo.service.impl.RoleServiceImpl;

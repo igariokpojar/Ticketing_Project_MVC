@@ -1,29 +1,35 @@
 package com.cydeo.service.impl;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-import java.util.*;
-// we created abstract class to avoid implementing same methods again and again
-public abstract class AbstractMapService <T,ID>{ // we don't need the Objects from Abstract class
+public abstract class AbstractMapService <T,ID>{
 
-    public Map<ID,T> map = new HashMap<>(); // fake DB (ID-key) and (T-value)
+    public Map<ID,T> map = new HashMap<>(); //DB
 
-     T save(ID id, T object){
-         map.put(id,object);
-         return object;
-     }
+    T save(ID id,T object){
+        map.put(id,object);
+        return object;
+    }
 
-     List<T> findAll(){
-         return new ArrayList<>(map.values()); // it will return List
-     }
+    List<T> findAll(){
+        return new ArrayList<>(map.values());
+    }
 
-     T findById(ID id){
-         return map.get(id);
-     }
-     void deleteById(ID id){
-         map.remove(id);
-     }
+    T findById(ID id){
 
-     void  update (ID id, T object){
-         map.put(id,object);
-     }
+        return map.get(id);
+    }
+
+    void deleteById(ID id){
+
+        map.remove(id);
+    }
+
+    void update(ID id, T object){
+        map.put(id,object);
+    }
+
 }
