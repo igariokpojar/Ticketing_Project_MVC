@@ -1,10 +1,11 @@
 package com.cydeo.service.impl;
 
 import com.cydeo.dto.ProjectDTO;
+import com.cydeo.dto.TaskDTO;
 import com.cydeo.dto.UserDTO;
 import com.cydeo.enums.Status;
-import com.cydeo.service.CrudService;
 import com.cydeo.service.ProjectService;
+import com.cydeo.service.TaskService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,6 +13,13 @@ import java.util.stream.Collectors;
 
 @Service
 public class ProjectServiceImpl extends AbstractMapService<ProjectDTO,String> implements ProjectService {
+
+    private final TaskService taskService;
+
+    public ProjectServiceImpl(TaskService taskService) {
+        this.taskService = taskService;
+    }
+
 
     @Override
     public ProjectDTO save(ProjectDTO project) {
@@ -58,6 +66,10 @@ public class ProjectServiceImpl extends AbstractMapService<ProjectDTO,String> im
                         .stream()
                         .filter(project -> project.getAssignedManager().equals(manager))
                         .map(project -> {
+
+                            // all the task belongs to the project
+
+                            List<TaskDTO> taskList = taskService.findTaskByManager(manager); // we want to see al the task created by this manager
 
                             int completeTaskCounts = 5;
                             int unfinishedTaskCounts = 3;
