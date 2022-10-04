@@ -35,10 +35,11 @@ public class TaskController {
        return "task/create";
     }
 
-    @PostMapping("/create")
+ // this method will execute when we click on Save Button
+    @PostMapping("/create") // we're filling the Object and POSTING
     public String insertTask(TaskDTO task){
 
-        taskService.save(task);
+        taskService.save(task); // ask your self if we have Service?
 
          return "redirect:/task-create";
     }

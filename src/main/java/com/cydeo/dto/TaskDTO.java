@@ -12,8 +12,8 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class TaskDTO {
     private Long id;
-    private ProjectDTO project;
-    private UserDTO assignedEmployee;
+    private ProjectDTO project; // for this we need  ProjectConverter
+    private UserDTO assignedEmployee; // for this we need ProjectConverter
     private String taskSubject;
     private String taskDetail;
     private Status taskStatus;
