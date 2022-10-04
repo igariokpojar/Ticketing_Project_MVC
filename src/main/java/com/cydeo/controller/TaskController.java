@@ -61,6 +61,25 @@ public class TaskController {
         model.addAttribute("employees",userService.findEmployees());
         model.addAttribute("tasks",taskService.findAll());
 
-        return "task/update";
+        return "/task/update";
     }
+
+//    @PostMapping("update/{taskId}")
+//    public String updateTask(@PathVariable("taskId") Long taskId,TaskDTO task){
+//
+//        task.setId(taskId);
+//        taskService.update(task);
+//
+//        return "redirect:/task-create";
+//    }
+
+    @PostMapping("/update/{id}")
+    public String updateTask(TaskDTO task){
+
+               taskService.update(task);
+
+        return "redirect:/task-create";
+    }
+
+
 }
