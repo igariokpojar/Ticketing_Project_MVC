@@ -5,7 +5,9 @@ import com.cydeo.service.RoleService;
 import com.cydeo.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/user")
@@ -37,8 +39,16 @@ public class UserController {
 
 
     @PostMapping("/create") // this method is going to post or to Inject the User in DB
-    public String insertUser(@ModelAttribute("user") UserDTO user){ // capture the User
+    public String insertUser(@Valid @ModelAttribute("user") UserDTO user, BindingResult bindingResult, Model model){ // capture the User
 
+        if (bindingResult.hasErrors()) {
+
+            model.addAttribute("roles", roleService.findAll());
+            model.addAttribute("users", userService.findAll());
+
+            return "/user/create";
+
+        }
         userService.save(user); // in DB save and update is not going to be the same
 
         return "redirect:/user/create"; //end point when you redirect
@@ -60,8 +70,16 @@ public class UserController {
     }
 
    @PostMapping("/update") // do we have service user updating Object?..nope we don't have so let's create one.. on the CrudService
-    public String updateUser(@ModelAttribute("user") UserDTO user){ // @ModelAttribute is optional
+    public String updateUser(@Valid @ModelAttribute("user") UserDTO user, BindingResult bindingResult, Model model){ // @ModelAttribute is optional
 
+       if (bindingResult.hasErrors()) {
+
+           model.addAttribute("roles", roleService.findAll());
+           model.addAttribute("users", userService.findAll());
+
+           return "/user/update";
+
+       }
       userService.update(user);
 
         return "redirect:/user/create";

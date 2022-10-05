@@ -1,33 +1,43 @@
 package com.cydeo.dto;
-
 import com.cydeo.enums.Status;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 public class ProjectDTO {
 
+    @NotBlank
     private String projectName;
+
+    @NotBlank
     private String projectCode;
+
+    @NotNull
     private UserDTO assignedManager;
+
+    @NotNull
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate startDate;
+
+    @NotNull
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate endDate;
+
+    @NotBlank
     private String projectDetail;
-    // I m going to create Enum bc are fixed
-    //OPEN("Open"),IN_PROGRESS("In Progress"),COMPLETE("Completed");
+
     private Status projectStatus;
 
     private int completeTaskCounts;
     private int unfinishedTaskCounts;
-
 
     // we create the second constructor to use for ProjectCreate and AllArgumentConstr on the Project Status Page
     public ProjectDTO(String projectName, String projectCode, UserDTO assignedManager, LocalDate startDate, LocalDate endDate, String projectDetail, Status projectStatus) {
