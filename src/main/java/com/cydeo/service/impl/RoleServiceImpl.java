@@ -22,7 +22,7 @@ public class RoleServiceImpl extends AbstractMapService<RoleDTO,Long> implements
 
     @Override
     public List<RoleDTO> findAll() {
-        return super.findAll();
+        return super.findAll(); // how to call the method belongs to Parent? => by using (super keyword)
     }
 
     @Override

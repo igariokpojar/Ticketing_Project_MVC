@@ -22,15 +22,17 @@ public class UserController {
     }
 
     @GetMapping("/create")
-    public String createUser(Model model){ // Model is carrying Data to view
+    // Model is an Interface that is carrying Data to view(can be Object,String Array ...)
+    public String createUser(Model model){
 
-        model.addAttribute("user",new UserDTO()); // form on HTML
+        // I'm passing an empty Object bc when we are open the page one empty page(Object) must come... (form on HTML)
+        model.addAttribute("user",new UserDTO());
 
-        model.addAttribute("roles",roleService.findAll()); // role on HTML
+        model.addAttribute("roles",roleService.findAll()); //  to bring the info from DB we need Service to find all the roles from DB(businessLogic) (role on HTML)
 
         model.addAttribute("users",userService.findAll()); // table on HTML
 
-        return "/user/create";
+        return "/user/create"; // go to HTML and look  in the Form (if we have a form then we need an Object)what kind of Object? First Name,Last Name and bla bla bla..this Object need to come from Controller
         // if you return same view, you have to provide in a method all the attributes required for the html file to show it
         // whatever view needs(object, lists etc) need to be provided again in a new method
     }
