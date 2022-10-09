@@ -17,7 +17,7 @@ public class RoleDtoConverter implements Converter<String, RoleDTO> {
     }
 
     @Override
-    public RoleDTO convert(String source) {
+    public RoleDTO convert(String source) { // @ConfigurationPropertiesBinding meaning => SpringBoot is going to do automatically for you
 
         if (source == null || source.equals("")) {  //  Select  -> ""
             return null;

@@ -14,7 +14,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 public class TaskDTO {
 
-    private Long id;
+    private Long id; // use this one as a unique Id
 
     @NotNull
     private ProjectDTO project;

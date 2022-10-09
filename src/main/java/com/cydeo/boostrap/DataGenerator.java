@@ -18,7 +18,7 @@ import java.time.LocalDate;
 @Component
 public class DataGenerator implements CommandLineRunner {
 
-    private final RoleService roleService;
+    private final RoleService roleService; // using injection to create Loosing coupling
     private final UserService userService;
     private final ProjectService projectService;
     private final TaskService taskService;
@@ -31,11 +31,11 @@ public class DataGenerator implements CommandLineRunner {
     }
 
     @Override
-    public void run(String... args) throws Exception {
+    public void run(String... args) throws Exception { // when you execute the application this method Spring is going to be executed before doing anything
 
-        RoleDTO adminRole = new RoleDTO(1L,"Admin");
-        RoleDTO managerRole = new RoleDTO(2L,"Manager");
-        RoleDTO employeeRole = new RoleDTO(3L,"Employee");
+        RoleDTO adminRole = new RoleDTO(1L,"Admin"); // Create  one RoleObject
+        RoleDTO managerRole = new RoleDTO(2L,"Manager");// Create  one RoleObject
+        RoleDTO employeeRole = new RoleDTO(3L,"Employee");// Create  one RoleObject
 
         roleService.save(adminRole);
         roleService.save(managerRole);
