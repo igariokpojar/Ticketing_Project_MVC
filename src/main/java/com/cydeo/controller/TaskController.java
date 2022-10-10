@@ -27,16 +27,24 @@ public class TaskController {
 
     @GetMapping("/create")// but before tu use it we need to injected // look up we did
     public String createTask(Model model){ // 3 thinks we need to past to HTML
-    model.addAttribute("task",new TaskDTO()); // 1. Task Objects
-    model.addAttribute("projects",projectService.findAll());// 2. Projects
-    model.addAttribute("employees", userService.findEmployees()); // 3. Employees // go to UserService and implement this Method "findEmployee"
-        model.addAttribute("tasks",taskService.findAll()); // go to table and add  see the attribute Task
+
+        // 1. Empty Task Objects -> th:object="${task}" on task create html
+    model.addAttribute("task",new TaskDTO());
+
+        // 2. Projects
+    model.addAttribute("projects",projectService.findAll());
+
+        // 3. Employees // go to UserService and implement this Method "findEmployee"
+    model.addAttribute("employees", userService.findEmployees());
+
+        // go to table and add  see the attribute Task
+        model.addAttribute("tasks",taskService.findAll());
 
 
        return "task/create"; //  on fragment lefts side bar -> th:href="@{/task/create}"
     }
 
- // this method will execute when we click on Save Button
+ // this method will execute when we click on Save Button -> th:action="@{/task/create}" method="post" on task create html
     @PostMapping("/create") // we're filling the Object and POSTING
     public String insertTask(@Valid @ModelAttribute("task") TaskDTO task, BindingResult bindingResult, Model model) {
 
@@ -120,7 +128,7 @@ public class TaskController {
 //        model.addAttribute("projects", projectService.findAll());
 //        model.addAttribute("employees", userService.findEmployees());
         model.addAttribute("statuses", Status.values());
-        model.addAttribute("tasks", taskService.findAllTasksByStatusIsNot(Status.COMPLETE));
+        model.addAttribute("tasks", taskService.findAllTasksByStatusIsNot(Status.COMPLETE)); // create method in TaskServiceInter and implement it
 
         return "/task/status-update";
 
@@ -132,7 +140,7 @@ public class TaskController {
         if (bindingResult.hasErrors()) {
 
             model.addAttribute("statuses", Status.values());
-            model.addAttribute("tasks", taskService.findAllTasksByStatusIsNot(Status.COMPLETE));
+            model.addAttribute("tasks", taskService.findAllTasksByStatusIsNot(Status.COMPLETE));// create method and implement it
 
             return "/task/status-update";
 

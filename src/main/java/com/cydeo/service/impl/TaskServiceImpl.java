@@ -12,7 +12,7 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
-public class TaskServiceImpl extends AbstractMapService<TaskDTO,Long> implements TaskService {
+public class TaskServiceImpl extends AbstractMapService<TaskDTO,Long> implements TaskService { // Implementation is coming from Abstract
     @Override
     public TaskDTO save(TaskDTO task) {
 
@@ -48,12 +48,11 @@ public class TaskServiceImpl extends AbstractMapService<TaskDTO,Long> implements
 
         TaskDTO foundTask = findById(task.getId()); // we have all tasks tha we have in the map
 
+        // by using the foundTask we are getting its status and date inform and set for the new task I want to update
         task.setTaskStatus(foundTask.getTaskStatus());
         task.setAssignedDate(foundTask.getAssignedDate());
 
-
-
-        super.update(task.getId(),task);
+        super.update(task.getId(),task); // real update status is happened here
     }
 
     @Override
