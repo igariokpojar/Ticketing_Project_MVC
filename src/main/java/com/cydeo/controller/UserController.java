@@ -49,7 +49,7 @@ public class UserController {
             model.addAttribute("roles", roleService.findAll());
             model.addAttribute("users", userService.findAll());
 
-            return "/user/create"; //
+            return "/user/create";
 
         }
         // bring the Object "user" form SAVE method by using @ModelAttribute ("user") annotation UserDTO user
