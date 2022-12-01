@@ -23,7 +23,7 @@ public class UserController {
 
     @GetMapping("/create")
     // Model is an Interface that is carrying Data to view(can be Object,String Array ...)
-    public String createUser(Model model){
+    public String createUser(Model model){ // Model is the thing that is caring tha data to view OR from view to Java
 
         // I'm passing an empty Object bc when we are open the page one empty page(Object) must come... (form on HTML)
         model.addAttribute("user",new UserDTO()); //"user" attribute is holding the userObject
@@ -49,7 +49,7 @@ public class UserController {
             model.addAttribute("roles", roleService.findAll());
             model.addAttribute("users", userService.findAll());
 
-            return "/user/create";
+            return "/user/create"; // this part is HTML file name or view
 
         }
         // bring the Object "user" form SAVE method by using @ModelAttribute ("user") annotation UserDTO user

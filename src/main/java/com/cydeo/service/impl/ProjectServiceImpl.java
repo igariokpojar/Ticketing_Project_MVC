@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Service
+@Service // we are extended this Abstract class bc we have all the implementation method inside them, and we can use those methods by using super keyword
 public class ProjectServiceImpl extends AbstractMapService<ProjectDTO,String> implements ProjectService {
 
     private final TaskService taskService;

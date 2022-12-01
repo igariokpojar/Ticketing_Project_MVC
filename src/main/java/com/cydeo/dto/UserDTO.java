@@ -11,6 +11,9 @@ import javax.validation.constraints.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserDTO {
+    /*
+    DTO is the Object that we are sending to Ui or view, or we are getting from them
+     */
 
     @NotBlank
     @Size(max = 15, min = 2)
