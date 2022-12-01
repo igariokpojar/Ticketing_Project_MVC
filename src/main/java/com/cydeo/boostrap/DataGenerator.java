@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 
-@Component
+@Component       // we are using this CommandRunner to do anything that we want to happen while application starts up
 public class DataGenerator implements CommandLineRunner {
 
     private final RoleService roleService; // using injection to create Loosing coupling

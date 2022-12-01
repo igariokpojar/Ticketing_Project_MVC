@@ -16,7 +16,7 @@ public abstract class AbstractMapService <T,ID>{ // why Abstract?bc all the impl
     }
 
     List<T> findAll(){ // find all the users
-        return new ArrayList<>(map.values()); // Collections  it will return List for you
+        return new ArrayList<>(map.values()); // Collections  it will return List of Objects we ar going to put inside
     }
 
     T findById(ID id){
